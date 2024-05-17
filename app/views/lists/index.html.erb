@@ -1,8 +1,10 @@
-Your Lists
-<% @lists.each do |list| %>
-  <%= cl_image_tag(list.photo.key, width: 400, height: 300, crop: :fill) %>
-  <p><%= link_to list.name, list %></p>
-  <%= button_to "Delete list", list_path(list[:id]), method: :delete, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
+<h1> Your Lists </h1>
+<div class="container">
+  <% @lists.each do |list| %>
+    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path list.photo.key, height: 300, crop: :fill %>')">
+      <p><%= link_to list.name, list %></p>
+      <%= button_to "Delete list", list_path(list[:id]), method: :delete, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
+  	</div>
   <% end %>
-
-<%= link_to "Add new list", new_list_path %>
+  <%= link_to "Add new list", new_list_path %>
+</div>

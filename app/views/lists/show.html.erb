@@ -1,11 +1,17 @@
-<h1><%= @list.name  %></h1>
-<img <%= @list.photo  %> >
-<%= cl_image_tag(@list.photo.key, width: 400, height: 300, crop: :fill) %>
-<% @bookmarks.each do |book| %>
-  <p><%= book.movie.title  %> </p>
-  <%= cl_image_tag(book.movie.poster_url.key, width: 400, height: 300, crop: :fill) %>
-  <%= button_to "Delete movie from list?", bookmark_path(book.id), method: :delete, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}  %>
-<%end %>
+<% var1 = cl_image_path @list.photo.key, height: 400, crop: :fill %>
+<% var2 = cl_image_tag(@list.photo.key, width: 400, height: 300, crop: :fill) %>
+<div class="card-category"  style="height: 200px; background-image: url('<%=var1%>')">
+  <h1><%= @list.name  %></h1>
+</div>
+
+<div class="container">
+  <% @bookmarks.each do |book| %>
+    <div class="card-category" style="background-image: url('<%= cl_image_path book.movie.poster_url.key, height: 400, crop: :fill %>')">
+      <p><%= book.movie.title  %> </p>
+      <%= button_to "Delete movie from list?", bookmark_path(book.id), method: :delete, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}  %>
+    </div>
+  <%end %>
+</div>
 
 <%= render "form", list: @list, bookmark: @bookmark %>
 <%= link_to "Back to all lists", lists_path %>

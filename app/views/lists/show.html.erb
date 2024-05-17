@@ -1,10 +1,9 @@
 <h1><%= @list.name  %></h1>
-
+<img <%= @list.photo  %> >
+<%= cl_image_tag(@list.photo.key, width: 400, height: 300, crop: :fill) %>
 <% @bookmarks.each do |book| %>
   <p><%= book.movie.title  %> </p>
-  <p><%= book.movie.id  %> </p>
-  <p><%= bookmark_path  %> </p>
-  <p><%= bookmark_path(book.movie.id)  %> </p>
+  <%= cl_image_tag(book.movie.poster_url.key, width: 400, height: 300, crop: :fill) %>
   <%= button_to "Delete movie from list?", bookmark_path(book.id), method: :delete, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}  %>
 <%end %>
 

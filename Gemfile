@@ -72,3 +72,4 @@ gem "simple_form"
 gem "sassc-rails" # Uncomment this line
 gem "bootstrap", "~> 5.2"
 gem "dotenv-rails"
+gem "cloudinary"

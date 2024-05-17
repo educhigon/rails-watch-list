@@ -1,0 +1,7 @@
+Your Lists
+<% @lists.each do |list| %>
+  <p><%= link_to list.name, list %></p>
+  <%= button_to "Delete list", list_path(list[:id]), method: :delete, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
+  <% end %>
+
+<%= link_to "Add new list", new_list_path %>

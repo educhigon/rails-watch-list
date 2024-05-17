@@ -1,0 +1,12 @@
+<h1><%= @list.name  %></h1>
+
+<% @bookmarks.each do |book| %>
+  <p><%= book.movie.title  %> </p>
+  <p><%= book.movie.id  %> </p>
+  <p><%= bookmark_path  %> </p>
+  <p><%= bookmark_path(book.movie.id)  %> </p>
+  <%= button_to "Delete movie from list?", bookmark_path(book.id), method: :delete, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}  %>
+<%end %>
+
+<%= render "form", list: @list, bookmark: @bookmark %>
+<%= link_to "Back to all lists", lists_path %>
